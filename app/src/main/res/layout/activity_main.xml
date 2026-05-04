@@ -10,11 +10,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPendingOrder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btnGoToRoom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/pending_orders_row" />
+
+    <Button
+        android:id="@+id/btnGoToRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to Room DB CRUD"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

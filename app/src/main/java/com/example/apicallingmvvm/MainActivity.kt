@@ -28,6 +28,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: DashboardItemWisePendingViewModel by viewModels()
+
     
     private val pendingOrderList =
         ArrayList<DashboardItemWisePendingResponse.DashboardItemWisePendingResponseItem.Pendingdata>()
@@ -50,6 +51,11 @@ class MainActivity : AppCompatActivity() {
         setUpRecyclerView()
         observeViewModel()
         fetchData()
+
+        binding.btnGoToRoom.setOnClickListener {
+            val intent = android.content.Intent(this, com.example.apicallingmvvm.presentation.ui.RoomActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun fetchData() {
