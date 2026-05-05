@@ -89,12 +89,7 @@ class RoomActivity : AppCompatActivity() {
             override fun onBindData(holder: RecyclerView.ViewHolder?, `val`: User) {
                 val viewHolder = holder as UserViewHolder
                 viewHolder.binding.apply {
-                    tvPendingPONumber.text = "Name: ${`val`.name}"
                     tvPendingItemmName.text = "Age: ${`val`.age}"
-                    
-                    tvPendingDateValue.visibility = android.view.View.GONE
-                    tvPendingAmntValue.visibility = android.view.View.GONE
-                    tvPendingQuantity.visibility = android.view.View.GONE
                     
                     root.setOnClickListener {
                         // Enter Edit Mode

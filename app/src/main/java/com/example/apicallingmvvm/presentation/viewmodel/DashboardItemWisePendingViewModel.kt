@@ -34,7 +34,7 @@ class DashboardItemWisePendingViewModel @Inject constructor(
                 val response = repository.getItemWisePending(cin, division, type, index, count, asonDate)
                 
                 if (response is Resource.Success) {
-                    // Mapping the complex nested response to a simple flat list for the UI
+
                     val flatList = response.data?.flatMap { item ->
                         item.data.flatMap { data -> data.pendingdata }
                     } ?: emptyList()

@@ -71,4 +71,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
+
+    //Glide For Photos
+    implementation(libs.glide)
 }

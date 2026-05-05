@@ -13,13 +13,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.apicallingmvvm.data.model.DashboardItemWisePendingResponse
 import com.example.apicallingmvvm.data.network.Resource
 import com.example.apicallingmvvm.databinding.ActivityMainBinding
 import com.example.apicallingmvvm.databinding.PendingOrdersRowBinding
 import com.example.apicallingmvvm.presentation.ui.RoomActivity
 import com.example.apicallingmvvm.presentation.ui.adapter.BaseGenericRecyclerViewAdapter
-import com.example.apicallingmvvm.presentation.utils.Utility
 import com.example.apicallingmvvm.presentation.viewmodel.DashboardItemWisePendingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -85,11 +85,10 @@ class MainActivity : AppCompatActivity() {
 
             override fun onBindData(holder: RecyclerView.ViewHolder?, item: DashboardItemWisePendingResponse.DashboardItemWisePendingResponseItem.Pendingdata) {
                 (holder as ItemViewHolder).binding.apply {
-                    tvPendingPONumber.text = "PO: ${item.poNum}"
-                    tvPendingDateValue.text = item.poDt
-                    tvPendingAmntValue.text = Utility.formatToRupees(item.amount.toDoubleOrNull() ?: 0.0)
-                    tvPendingQuantity.text = "Qty: ${item.pendingQty}"
                     tvPendingItemmName.text = item.itemName
+                    Glide.with(holder.itemView.context)
+                        .load("https://picsum.photos/200")
+                        .into(ivItemImage)
                 }
             }
         }

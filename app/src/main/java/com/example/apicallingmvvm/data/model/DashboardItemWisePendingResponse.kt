@@ -8,7 +8,7 @@ class DashboardItemWisePendingResponse : ArrayList<DashboardItemWisePendingRespo
         var servertime: String
     ) {
         data class Data(
-            var ismore: Boolean,
+
             var pendingdata: List<Pendingdata>
         )
 
