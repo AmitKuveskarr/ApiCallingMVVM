@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         setUpRecyclerView()
         observeViewModel()
         
-        // Initial Fetch
+
         viewModel.fetchItemWisePending("4110337", "0", "1", "0", "50", "4/30/2026")
 
         binding.btnGoToRoom.setOnClickListener {
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error: ${resource.message}", Toast.LENGTH_LONG).show()
                 }
                 is Resource.Loading -> {
-                    // Show progress bar if you have one
+                   
                 }
             }
         }
@@ -84,11 +84,6 @@ class MainActivity : AppCompatActivity() {
             override fun onBindData(holder: RecyclerView.ViewHolder?, item: DashboardItemWisePendingResponse.DashboardItemWisePendingResponseItem.Pendingdata) {
                 (holder as ItemViewHolder).binding.apply {
                     tvPendingItemmName.text = item.itemName
-                    tvPendingColor.text = "Color: ${item.colornm}"
-                    tvPendingPONumber.text = "PO: ${item.poNum}"
-                    tvPendingDateValue.text = item.poDt
-                    tvPendingQuantity.text = "Qty: ${item.pendingQty}"
-                    tvPendingAmntValue.text = "₹${item.amount}"
 
                     Glide.with(holder.itemView.context)
                         .load("https://picsum.photos/200")

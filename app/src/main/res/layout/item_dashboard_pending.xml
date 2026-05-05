@@ -38,51 +38,6 @@
                 android:maxLines="2"
                 android:ellipsize="end"/>
 
-            <TextView
-                android:id="@+id/tvPendingColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"/>
-
-            <TextView
-                android:id="@+id/tvPendingPONumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4.dp"
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="2.dp">
-
-                <TextView
-                    android:id="@+id/tvPendingQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvPendingAmntValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvPendingDateValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2.dp"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"/>
-
         </LinearLayout>
 
     </LinearLayout>
