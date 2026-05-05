@@ -11,7 +11,6 @@ class DashboardItemWisePendingResponse : ArrayList<DashboardItemWisePendingRespo
 
             var pendingdata: List<Pendingdata>
         )
-
         data class Pendingdata(
             var amount: String,
             var colornm: String,

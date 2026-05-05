@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.apicallingmvvm.data.model.DashboardItemWisePendingResponse
 import com.example.apicallingmvvm.data.network.Resource
 import com.example.apicallingmvvm.databinding.ActivityMainBinding
-import com.example.apicallingmvvm.databinding.PendingOrdersRowBinding
+import com.example.apicallingmvvm.databinding.ItemDashboardPendingBinding
 import com.example.apicallingmvvm.presentation.ui.RoomActivity
 import com.example.apicallingmvvm.presentation.ui.adapter.BaseGenericRecyclerViewAdapter
 import com.example.apicallingmvvm.presentation.viewmodel.DashboardItemWisePendingViewModel
@@ -77,20 +77,26 @@ class MainActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         adapter = object : BaseGenericRecyclerViewAdapter<DashboardItemWisePendingResponse.DashboardItemWisePendingResponseItem.Pendingdata>(pendingOrderList) {
             override fun setViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val binding = PendingOrdersRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = ItemDashboardPendingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ItemViewHolder(binding)
             }
-
-            override fun getViewType(position: Int): Int = 0
 
             override fun onBindData(holder: RecyclerView.ViewHolder?, item: DashboardItemWisePendingResponse.DashboardItemWisePendingResponseItem.Pendingdata) {
                 (holder as ItemViewHolder).binding.apply {
                     tvPendingItemmName.text = item.itemName
+                    tvPendingColor.text = "Color: ${item.colornm}"
+                    tvPendingPONumber.text = "PO: ${item.poNum}"
+                    tvPendingDateValue.text = item.poDt
+                    tvPendingQuantity.text = "Qty: ${item.pendingQty}"
+                    tvPendingAmntValue.text = "₹${item.amount}"
+
                     Glide.with(holder.itemView.context)
                         .load("https://picsum.photos/200")
                         .into(ivItemImage)
                 }
             }
+
+            override fun getViewType(position: Int): Int = 0
         }
 
         binding.rvPendingOrder.apply {
@@ -99,5 +105,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    class ItemViewHolder(val binding: PendingOrdersRowBinding) : RecyclerView.ViewHolder(binding.root)
+    class ItemViewHolder(val binding: ItemDashboardPendingBinding) : RecyclerView.ViewHolder(binding.root)
 }
