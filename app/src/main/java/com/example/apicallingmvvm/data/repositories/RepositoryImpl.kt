@@ -43,4 +43,8 @@ class RepositoryImpl @Inject constructor(
     suspend fun deleteAllLocalUsers() {
         userDao.deleteAllUsers()
     }
+
+    suspend fun deleteUserById(userId: Int) {
+        userDao.deleteUserById(userId)
+    }
 }

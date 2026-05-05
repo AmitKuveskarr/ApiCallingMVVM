@@ -31,4 +31,8 @@ class RoomViewModel @Inject constructor(
     fun deleteAll() = viewModelScope.launch {
         repository.deleteAllLocalUsers()
     }
+
+    fun deleteById(userId: Int) = viewModelScope.launch {
+        repository.deleteUserById(userId)
+    }
 }

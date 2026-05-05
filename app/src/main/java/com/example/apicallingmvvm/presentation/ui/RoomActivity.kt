@@ -63,6 +63,17 @@ class RoomActivity : AppCompatActivity() {
         binding.btnDeleteAllUsers.setOnClickListener {
             viewModel.deleteAll()
         }
+
+//        binding.btnDeleteAllUsers.setOnClickListener {
+//            userToUpdate?.let { user ->
+//                viewModel.deleteById(user.id)
+//
+//                binding.etName.text.clear()
+//                binding.etAge.text.clear()
+//                userToUpdate = null
+//                binding.btnAddUser.text = "Add User"
+//            } ?: Toast.makeText(this, "Select a user to delete first", Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun observeViewModel() {
