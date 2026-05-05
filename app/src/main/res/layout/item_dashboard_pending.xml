@@ -29,7 +29,7 @@
             android:layout_marginStart="12.dp">
 
             <TextView
-                android:id="@+id/tvPendingItemmName"
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"

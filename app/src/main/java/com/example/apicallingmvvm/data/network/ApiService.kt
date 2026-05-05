@@ -1,7 +1,6 @@
 package com.example.apicallingmvvm.data.network
 
 import com.example.apicallingmvvm.BuildConfig
-import com.example.apicallingmvvm.data.model.DashboardItemWisePendingResponse
 import com.example.apicallingmvvm.presentation.utils.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,18 +14,11 @@ import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-    @FormUrlEncoded
-    @POST("getPendingOrders")
-    suspend fun ItemWisePendingApi(
-        @Field("CIN") cin: String,
-        @Field("ClientSecret") clientSecret: String,
-        @Field("Division") division: String,
-        @Field("SearchText") searchText: String,
-        @Field("AsonDate") asonDate: String,
-        @Field("Index") index: String,
-        @Field("Count") count: String,
-        @Field("Type") type: String,
-    ): Response<DashboardItemWisePendingResponse>
+//    @FormUrlEncoded
+//    @POST("")
+//    suspend fun ItemApi(
+//        @Field("CIN") cin: String,
+//    ): Response<>
 
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): ApiService {

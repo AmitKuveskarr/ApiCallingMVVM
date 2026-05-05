@@ -22,7 +22,7 @@ class RoomActivity : AppCompatActivity() {
     private val viewModel: RoomViewModel by viewModels()
     private val userList = ArrayList<User>()
     private var adapter: BaseGenericRecyclerViewAdapter<User>? = null
-    private var userToUpdate: User? = null // Track the user being edited
+    private var userToUpdate: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
