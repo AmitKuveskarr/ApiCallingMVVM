@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.apicallingmvvm.data.local.entities.User
-import com.example.apicallingmvvm.domain.Repository
+import com.example.apicallingmvvm.data.repositories.RepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RoomViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: RepositoryImpl
 ) : ViewModel() {
 
     val allUsers: LiveData<List<User>> = repository.getAllLocalUsers()

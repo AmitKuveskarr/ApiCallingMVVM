@@ -14,12 +14,6 @@ import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
-    /*@FormUrlEncoded
-    @POST("getInitialValueExcutive")
-    suspend fun initialApi(
-        @Field("Date") date: String
-    ) : Response<LoginResponse>*/
-
 
     @FormUrlEncoded
     @POST("getPendingOrders")
@@ -33,29 +27,31 @@ interface ApiService {
         @Field("Count") count: String,
         @Field("Type") type: String,
     ): Response<DashboardItemWisePendingResponse>
+
     companion object {
-
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): ApiService {
-            val logging = HttpLoggingInterceptor()
+            val logging = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
 
-            logging.level = HttpLoggingInterceptor.Level.BODY
-            val okkHttpclient = OkHttpClient.Builder()
+            val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(90, TimeUnit.SECONDS)
                 .readTimeout(90, TimeUnit.SECONDS)
                 .writeTimeout(90, TimeUnit.SECONDS)
                 .addInterceptor(networkConnectionInterceptor)
-
-            if (BuildConfig.DEBUG) {
-                okkHttpclient.addInterceptor(logging)
-            }
+                .apply {
+                    if (BuildConfig.DEBUG) {
+                        addInterceptor(logging)
+                    }
+                }
+                .build()
 
             return Retrofit.Builder()
-                .client(okkHttpclient.build())
+                .client(okHttpClient)
                 .baseUrl(Constant.TEST_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ApiService::class.java)
         }
-
     }
 }
