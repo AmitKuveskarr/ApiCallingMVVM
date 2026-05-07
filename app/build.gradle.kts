@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -42,36 +42,36 @@ android {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-ktx:1.9.3")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("com.google.android.material:material:1.12.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
 
     // Retrofit for API calls
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
     
     // OkHttp for networking and logging
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     // Hilt dependencies
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     //RoomDb
-    implementation("androidx.room:room-runtime:2.8.4")
-    implementation("androidx.room:room-ktx:2.8.4")
-    kapt("androidx.room:room-compiler:2.8.4")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     //Glide For Photos
-    implementation("com.github.bumptech.glide:glide:5.0.7")
+    implementation(libs.glide)
 }
