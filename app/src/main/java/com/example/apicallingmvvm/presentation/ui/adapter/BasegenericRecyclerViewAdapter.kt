@@ -11,7 +11,7 @@ abstract class BaseGenericRecyclerViewAdapter<T>(
 
     abstract fun getViewType(position: Int): Int
 
-    abstract fun onBindData(holder: RecyclerView.ViewHolder?, `val`: T)
+    abstract fun onBindData(holder: RecyclerView.ViewHolder?, item: T)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return setViewHolder(parent, viewType)

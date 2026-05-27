@@ -1,6 +1,7 @@
 package com.example.apicallingmvvm.data.network
 
 import com.example.apicallingmvvm.BuildConfig
+import com.example.apicallingmvvm.data.local.model.UserResponse
 import com.example.apicallingmvvm.presentation.utils.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,11 +15,12 @@ import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-//    @FormUrlEncoded
-//    @POST("")
-//    suspend fun ItemApi(
-//        @Field("CIN") cin: String,
-//    ): Response<>
+    @FormUrlEncoded
+    @POST("GetSchemeTypeGift")
+    suspend fun ItemApi(
+        @Field("CIN") cin: String,
+        @Field("ClientSecret") ClientSecret: String,
+    ): Response<UserResponse>
 
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): ApiService {
