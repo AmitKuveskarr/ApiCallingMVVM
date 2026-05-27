@@ -13,6 +13,6 @@ class RepositoryImpl @Inject constructor(
 
 
     suspend fun getItem(cin: String ): Resource<UserResponse> {
-        return apiRequest { apiService.ItemApi(cin, "Abc") }
+        return apiRequest { apiService.ItemApi(cin,) }
     }
 }

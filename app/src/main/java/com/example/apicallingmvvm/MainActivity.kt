@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: DataViewModel by viewModels()
 
     private val dataList = ArrayList<UserResponse.UserResponseItem.Data>()
+    private val allDataList = ArrayList<UserResponse.UserResponseItem.Data>()
     private var adapter: BaseGenericRecyclerViewAdapter<UserResponse.UserResponseItem.Data>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +42,12 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        viewModel.fetchUser("4110337")
 
         setUpRecyclerView()
         observeViewModel()
 
 
-        viewModel.fetchUser("4110337")
 
 
     }
@@ -62,8 +63,10 @@ class MainActivity : AppCompatActivity() {
                     
                     resource.data?.let { list ->
                         dataList.clear()
+//                        allDataList.clear()
                         list.forEach { userResponseItem ->
                             dataList.addAll(userResponseItem.data)
+//                            allDataList.addAll(userResponseItem.data)
                         }
                         adapter?.notifyDataSetChanged()
                     }
@@ -104,6 +107,35 @@ class MainActivity : AppCompatActivity() {
             this.adapter = this@MainActivity.adapter
         }
     }
+
+
+//    private fun se() {
+//
+//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//
+//            override fun onQueryTextSubmit(p0: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(p0: String?): Boolean {
+//
+//                dataList.clear()
+//
+//                if (p0.isNullOrEmpty()) {
+//                    dataList.addAll(allDataList)
+//                } else {
+//                    val filtered = allDataList.filter {
+//                        it.slno.toString().contains(p0, ignoreCase = true)
+//                    }
+//                    dataList.addAll(filtered)
+//                }
+//
+//                adapter?.notifyDataSetChanged()
+//
+//                return true
+//            }
+//        })
+//    }
 
     class ItemViewHolder(val binding: ItemDashboardPendingBinding) : RecyclerView.ViewHolder(binding.root)
 }
