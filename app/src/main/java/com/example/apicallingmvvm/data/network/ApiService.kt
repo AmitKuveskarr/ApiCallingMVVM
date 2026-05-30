@@ -1,25 +1,30 @@
 package com.example.apicallingmvvm.data.network
 
 import com.example.apicallingmvvm.BuildConfig
-import com.example.apicallingmvvm.data.local.model.UserResponse
+import com.example.apicallingmvvm.data.local.model.Todo
 import com.example.apicallingmvvm.presentation.utils.Constant
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-    @FormUrlEncoded
-    @POST("")
-    suspend fun ItemApi(
-        @Field("CIN") cin: String,
-    ): Response<UserResponse>
+    @POST("todos")
+    suspend fun createTodo(@Body todo: Todo): Response<Todo>
+
+    @PUT("todos/{id}")
+    suspend fun updateTodo(@Path("id") id: Int, @Body todo: Todo): Response<Todo>
+
+    @PATCH("todos/{id}")
+    suspend fun patchTodo(@Path("id") id: Int, @Body todo: Map<String, @JvmSuppressWildcards Any>): Response<Todo>
+
+    @DELETE("todos/{id}")
+    suspend fun deleteTodo(@Path("id") id: Int): Response<ResponseBody>
 
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): ApiService {

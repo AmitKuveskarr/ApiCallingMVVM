@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ApiCallingMVVM</string>
+    <string name="add_todo">Add Todo</string>
+    <string name="crud_operations">CRUD Operations</string>
+    <string name="enter_todo_title">Enter Todo Title</string>
+    <string name="create_todo">Create Todo</string>
+    <string name="update_todo">Update Todo</string>
+    <string name="delete_todo">Delete Todo</string>
+    <string name="enter_todo_id">Enter Todo ID (for update/delete)</string>
+    <string name="please_enter_id">Please enter ID</string>
+    <string name="please_enter_title">Please enter title</string>
 </resources>
