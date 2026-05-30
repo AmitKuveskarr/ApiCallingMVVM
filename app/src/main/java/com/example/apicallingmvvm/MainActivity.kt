@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.apicallingmvvm.data.local.model.UserResponse
 import com.example.apicallingmvvm.data.network.Resource
 import com.example.apicallingmvvm.databinding.ActivityMainBinding
-import com.example.apicallingmvvm.databinding.ItemDashboardPendingBinding
+import com.example.apicallingmvvm.databinding.ItemRowBinding
 import com.example.apicallingmvvm.presentation.ui.adapter.BaseGenericRecyclerViewAdapter
 import com.example.apicallingmvvm.presentation.viewmodel.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -88,13 +88,13 @@ class MainActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         adapter = object : BaseGenericRecyclerViewAdapter<UserResponse.UserResponseItem.Data>(dataList) {
             override fun setViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val binding = ItemDashboardPendingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ItemViewHolder(binding)
             }
 
             override fun onBindData(holder: RecyclerView.ViewHolder?, item: UserResponse.UserResponseItem.Data) {
                 (holder as ItemViewHolder).binding.apply {
-                    tvName.text = item.slno.toString()
+                    tvItemmName.text = item.slno.toString()
 
                 }
             }
@@ -137,5 +137,5 @@ class MainActivity : AppCompatActivity() {
 //        })
 //    }
 
-    class ItemViewHolder(val binding: ItemDashboardPendingBinding) : RecyclerView.ViewHolder(binding.root)
+    class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 }

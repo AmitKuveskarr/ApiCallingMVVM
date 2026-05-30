@@ -14,7 +14,7 @@
         android:padding="16.dp">
 
         <TextView
-            android:id="@+id/tvPendingItemmName"
+            android:id="@+id/tvItemmName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -27,7 +27,7 @@
             android:layout_marginTop="8.dp">
 
             <TextView
-                android:id="@+id/tvPendingPONumber"
+                android:id="@+id/tvNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -38,25 +38,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4.dp">
 
-            <TextView
-                android:id="@+id/tvPendingQuantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tvPendingAmntValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_green_dark"
-                android:textStyle="bold" />
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
