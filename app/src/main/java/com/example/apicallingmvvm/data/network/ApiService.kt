@@ -18,11 +18,12 @@ import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-    @FormUrlEncoded
-    @POST("")
-    suspend fun ItemApi(
-        @Field("CIN") cin: String,
-    ): Response<UserResponse>
+//    @FormUrlEncoded
+//    @POST("")
+//    suspend fun ItemApi(
+//        @Field("") cin: String,
+//
+//    ): Response<UserResponse>
 
 //    @PUT("todos/{id}")
 //    suspend fun updateTodo(@Path("id") id: Int, @Body todo: UserResponse): Response<UserResponse>
