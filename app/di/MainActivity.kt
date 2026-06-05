@@ -1,6 +1,5 @@
-package com.example.apicallingmvvm
+package com.example.apicallingmvvm.di
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,27 +8,23 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.apicallingmvvm.data.local.model.UserResponse
-import com.example.apicallingmvvm.data.network.Resource
+import com.example.apicallingmvvm.di.network.Resource
 import com.example.apicallingmvvm.databinding.ActivityMainBinding
 import com.example.apicallingmvvm.databinding.ItemRowBinding
-import com.example.apicallingmvvm.presentation.ui.adapter.BaseGenericRecyclerViewAdapter
-import com.example.apicallingmvvm.presentation.viewmodel.DataViewModel
+import com.example.apicallingmvvm.di.ui.DataViewModel
+import com.example.apicallingmvvm.model.UserResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: DataViewModel by viewModels()
-
     private val dataList = ArrayList<UserResponse.UserResponseItem.Data>()
-    private val allDataList = ArrayList<UserResponse.UserResponseItem.Data>()
-    private var adapter: BaseGenericRecyclerViewAdapter<UserResponse.UserResponseItem.Data>? = null
+    private lateinit var userAdapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,33 +37,25 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        viewModel.fetchUser("4110337")
 
         setUpRecyclerView()
         observeViewModel()
 
-
-
-
+        viewModel.fetchUser("4110337", "Abc")
     }
-
 
     private fun observeViewModel() {
         viewModel.users.observe(this) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-
                     binding.tvError.visibility = View.GONE
-                    
                     resource.data?.let { list ->
                         dataList.clear()
-//                        allDataList.clear()
                         list.forEach { userResponseItem ->
                             dataList.addAll(userResponseItem.data)
-//                            allDataList.addAll(userResponseItem.data)
                         }
-                        adapter?.notifyDataSetChanged()
+                        userAdapter.notifyDataSetChanged()
                     }
                 }
                 is Resource.Error -> {
@@ -86,56 +73,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerView() {
-        adapter = object : BaseGenericRecyclerViewAdapter<UserResponse.UserResponseItem.Data>(dataList) {
-            override fun setViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return ItemViewHolder(binding)
-            }
-
-            override fun onBindData(holder: RecyclerView.ViewHolder?, item: UserResponse.UserResponseItem.Data) {
-                (holder as ItemViewHolder).binding.apply {
-                    tvItemmName.text = item.slno.toString()
-
-                }
-            }
-
-            override fun getViewType(position: Int): Int = 0
-        }
-
+        userAdapter = UserAdapter(dataList)
         binding.rvPendingOrder.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            this.adapter = this@MainActivity.adapter
+            adapter = userAdapter
         }
     }
 
+    class UserAdapter(private val items: List<UserResponse.UserResponseItem.Data>) :
+        RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
-//    private fun se() {
-//
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//
-//            override fun onQueryTextSubmit(p0: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(p0: String?): Boolean {
-//
-//                dataList.clear()
-//
-//                if (p0.isNullOrEmpty()) {
-//                    dataList.addAll(allDataList)
-//                } else {
-//                    val filtered = allDataList.filter {
-//                        it.slno.toString().contains(p0, ignoreCase = true)
-//                    }
-//                    dataList.addAll(filtered)
-//                }
-//
-//                adapter?.notifyDataSetChanged()
-//
-//                return true
-//            }
-//        })
-//    }
+        class ViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return ViewHolder(binding)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val item = items[position]
+            holder.binding.tvItemmName.text = item.slno.toString()
+        }
+
+        override fun getItemCount(): Int = items.size
+    }
 }

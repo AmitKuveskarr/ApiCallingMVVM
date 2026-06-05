@@ -1,4 +1,4 @@
-package com.example.apicallingmvvm.data.network
+package com.example.apicallingmvvm.di.network
 
 sealed class Resource<T>(
     val data: T? = null,
